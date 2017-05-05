@@ -7,7 +7,7 @@ public class SliceItMain extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		SliceItMain slc= new SliceItMain(800,100);
+		SliceItMain slc= new SliceItMain(800,400);
 		
 	}
 
