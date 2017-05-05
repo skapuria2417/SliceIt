@@ -1,4 +1,4 @@
-import gui6.GUIApplication;
+import guiTeacher.GUIApplication;
 
 public class SliceItMain extends GUIApplication {
 	

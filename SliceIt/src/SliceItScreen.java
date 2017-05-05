@@ -1,7 +1,9 @@
 import java.util.List;
 
-import gui6.ClickableScreen;
-import gui6.components.Visible;
+import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.ClickableScreen;
+
+
 
 
 
@@ -19,12 +21,14 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 	}
 
 	@Override
-	public void initAllObjects(List<Visible> arg0) {
+	public void initAllObjects(List<Visible> viewObjects) {
 		// TODO Auto-generated method stub
+		
+	}
 		
 	}
 
 	
 
 	
-}
+
