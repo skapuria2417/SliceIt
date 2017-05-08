@@ -46,6 +46,7 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 		initScreen();
 		setUndecorated(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 
