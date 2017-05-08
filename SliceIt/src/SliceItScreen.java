@@ -42,7 +42,9 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				viewObjects.remove(intro);
+				viewObjects.remove(author);
+				remove(startGame);
 				
 			}
 			
