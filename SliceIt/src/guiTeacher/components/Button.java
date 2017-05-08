@@ -88,12 +88,12 @@ public class Button extends TextLabel implements Clickable{
 				g.setColor(Utilities.lighten(getBackground(), .4f));
 //				g.setColor(getBackground());
 			}
-			g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
+			g.fillRect(0, 0, getWidth(), getHeight());
 		}else{
 			clear();
 		}
 		g.setColor(Color.BLACK);
-		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
+		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
 		g.setColor(getForeground());
 		g.setFont(getFont());
 		FontMetrics fm = g.getFontMetrics();

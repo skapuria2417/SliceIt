@@ -31,7 +31,7 @@ public class TextLabel extends StyledComponent implements TextComponent{
 	//FIELDS
 		private String text;
 		private Font font;
-		private int size;
+		private float size;
 		private Color textColor;
 		private int align; 
 		
@@ -39,11 +39,12 @@ public class TextLabel extends StyledComponent implements TextComponent{
 			super(x, y, w, h);
 			this.text = text;
 			font = getBaseFont();
-			size = 20;
+			setSize(20f);
 			textColor = super.getTextColor();
 			align = super.getBodyAlign();
 			update();
 		}
+		
 
 		public void setCustomAlign(int i){
 			this.align = i;
@@ -72,7 +73,7 @@ public class TextLabel extends StyledComponent implements TextComponent{
 			return text;
 		}
 		
-		public void setSize(int size){
+		public void setSize(float size){
 			this.size = size;
 			this.font=font.deriveFont(size);
 			update();
@@ -86,7 +87,7 @@ public class TextLabel extends StyledComponent implements TextComponent{
 			return font;
 		}
 		
-		public int getSize(){
+		public float getSize(){
 			return size;
 		}
 		
