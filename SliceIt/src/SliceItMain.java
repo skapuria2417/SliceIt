@@ -16,6 +16,7 @@ public class SliceItMain extends GUIApplication {
 	public void initScreen() {
 		SliceItScreen slice = new SliceItScreen(getWidth(),getHeight());
 		setScreen(slice);
+		GameScreen game = new GameScreen(800,800);
 	}
 
 }

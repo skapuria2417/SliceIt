@@ -3,6 +3,7 @@ import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
@@ -16,6 +17,9 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 	private TextLabel intro;
 	private TextLabel author;
 	private Button startGame;
+	private TextArea instructions;
+	private Button next;
+	private SliceItMain game;
 
 	public SliceItScreen(int width, int height) {
 		super(width, height);
@@ -38,6 +42,8 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 		author.setSize(12);
 		viewObjects.add(author);
 		
+		instructions = new TextArea(150,100,500,700,"Move the Arrow Keys to cut the triangle to get points! Avoid hitting the moving ball.");
+		
 		startGame=new Button(400,400,120,40,"Start Game", Color.green, new Action(){
 			
 			@Override
@@ -45,7 +51,20 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 				viewObjects.remove(intro);
 				viewObjects.remove(author);
 				remove(startGame);
+				viewObjects.add(instructions);
+				instructions.setSize(50);
 				
+				next = new Button(650,700,120,40,"Next",Color.green,new Action(){
+
+					@Override
+					public void act() {
+						
+						SliceItMain.setScreen(SliceItMain.game);
+						
+					}
+					
+				});
+				viewObjects.add(next);
 			}
 			
 		});
