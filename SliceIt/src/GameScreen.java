@@ -1,16 +1,28 @@
+import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.MovingComponent;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
 public class GameScreen extends ClickableScreen implements Runnable{
 	
-	private MovingComponent ball;
+	ArrayList<String> fruits =new ArrayList<String>();
+	
 
 	public GameScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		fruits.add("apple");
+		fruits.add("banana");
+		fruits.add("orange");
+		fruits.add("pineapple");
+		fruits.add("kiwi");
+		fruits.add("tomamto");
+		fruits.add("guava");
+		fruits.add("mango");
+		fruits.add("durian");
+		fruits.add("jackfruit");
 	}
 
 	@Override
@@ -21,8 +33,7 @@ public class GameScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		ball = new MovingComponent(0,0,50,50);
-		viewObjects.add(ball);
+		
 	} 
 	
 }
