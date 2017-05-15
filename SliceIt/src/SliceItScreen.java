@@ -59,12 +59,13 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 					@Override
 					public void act() {
 						
-						SliceItMain.setScreen(SliceItMain.game);
+						
+						SliceItMain.g.setScreen(SliceItMain.game);
 						
 					}
 					
-				});
-				viewObjects.add(next);
+				});addObject(next);
+				
 			}
 			
 		});

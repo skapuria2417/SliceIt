@@ -1,9 +1,12 @@
 import java.util.List;
 
+import guiTeacher.components.MovingComponent;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
 public class GameScreen extends ClickableScreen implements Runnable{
+	
+	private MovingComponent ball;
 
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -18,8 +21,8 @@ public class GameScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
-		
-	}
-
+		ball = new MovingComponent(0,0,50,50);
+		viewObjects.add(ball);
+	} 
+	
 }

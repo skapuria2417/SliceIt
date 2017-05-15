@@ -2,13 +2,16 @@ import guiTeacher.GUIApplication;
 
 public class SliceItMain extends GUIApplication {
 	
+	public static GameScreen game;
+	public static SliceItMain g;
+	
 	public SliceItMain(int width, int height){
 		super(width,height);
 	}
 
 	public static void main(String[] args) {
-		SliceItMain slc= new SliceItMain(800,800);
-		Thread game = new Thread(slc);
+		g= new SliceItMain(800,800);
+		Thread game = new Thread(g);
 		game.start();
 	}
 
@@ -16,7 +19,7 @@ public class SliceItMain extends GUIApplication {
 	public void initScreen() {
 		SliceItScreen slice = new SliceItScreen(getWidth(),getHeight());
 		setScreen(slice);
-		GameScreen game = new GameScreen(800,800);
+		 game = new GameScreen(800,800);
 	}
 
 }
