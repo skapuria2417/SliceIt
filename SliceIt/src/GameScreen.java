@@ -6,34 +6,31 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
-public class GameScreen extends ClickableScreen implements Runnable{
-	
-	ArrayList<String> fruits =new ArrayList<String>();
-	
+public class GameScreen extends ClickableScreen implements Runnable {
+
+	private String [] fruits={"apple","banana","orange","pineapple","kiwi","tomamto","guava,","mango","durian","jackfruit"};
+	private TextLabel fruitDisplay;
+	private int random;
 
 	public GameScreen(int width, int height) {
 		super(width, height);
-		fruits.add("apple");
-		fruits.add("banana");
-		fruits.add("orange");
-		fruits.add("pineapple");
-		fruits.add("kiwi");
-		fruits.add("tomamto");
-		fruits.add("guava");
-		fruits.add("mango");
-		fruits.add("durian");
-		fruits.add("jackfruit");
+
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		
-	} 
-	
+		System.out.println(fruits.length);
+		random = (int) (Math.random() * fruits.length);
+		fruitDisplay = new TextLabel(100, 25, 100, 100, fruits[random]);
+		System.out.print("sdjklfhsjkfhnjks");
+		viewObjects.add(fruitDisplay);
+
+	}
+
 }

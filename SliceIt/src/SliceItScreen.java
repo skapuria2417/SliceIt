@@ -21,6 +21,9 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 	private Button next;
 	private SliceItMain game;
 
+	private String [] fruits={"apple","banana","orange","pineapple","kiwi","tomamto","guava,","mango","durian","jackfruit"};
+	private TextLabel fruitDisplay;
+	private int random;
 	public SliceItScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -58,9 +61,11 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 
 					@Override
 					public void act() {
-						
-						
-						SliceItMain.g.setScreen(SliceItMain.game);
+						viewObjects.remove(instructions);
+						remove(next);
+						random = (int) (Math.random() * fruits.length);
+						fruitDisplay = new TextLabel(100, 25, 100, 100, fruits[random]);
+						viewObjects.add(fruitDisplay);
 						
 					}
 					
