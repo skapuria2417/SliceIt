@@ -13,7 +13,7 @@ import guiTeacher.userInterfaces.ClickableScreen;
 
 
 public class SliceItScreen extends ClickableScreen implements Runnable {
-	
+
 	private TextLabel intro;
 	private TextLabel author;
 	private Button startGame;
@@ -40,43 +40,49 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 		intro = new TextLabel(300,200,400,400,"Slice It");
 		intro.setSize(70);
 		viewObjects.add(intro);
-		
+
 		author = new TextLabel(600,700,400,400,"By Sammyajit Kapuria.");
 		author.setSize(12);
 		viewObjects.add(author);
-		
+
 		instructions = new TextArea(150,100,500,700,"Move the Arrow Keys to cut the triangle to get points! Avoid hitting the moving ball.");
-		
+
 		startGame=new Button(400,400,120,40,"Start Game", Color.green, new Action(){
-			
+
 			@Override
 			public void act() {
+
 				viewObjects.remove(intro);
 				viewObjects.remove(author);
 				remove(startGame);
 				viewObjects.add(instructions);
 				instructions.setSize(50);
-				
+
 				next = new Button(650,700,120,40,"Next",Color.green,new Action(){
 
 					@Override
 					public void act() {
-						viewObjects.remove(instructions);
-						remove(next);
-						random = (int) (Math.random() * fruits.length);
-						fruitDisplay = new TextLabel(100, 25, 100, 100, fruits[random]);
-						viewObjects.add(fruitDisplay);
-						
-					}
-					
+						GameScreen game = new GameScreen(getWidth(), getHeight());
+						SliceItMain.g.setScreen(game);
+						Thread t = new Thread(game);
+						t.start();
+
+						//						viewObjects.remove(instructions);
+						//						remove(next);
+						//						random = (int) (Math.random() * fruits.length);
+						//						fruitDisplay = new TextLabel(100, 25, 100, 100, fruits[random]);
+						//						viewObjects.add(fruitDisplay);
+
+					}		
+					//					
+					//				})
+					//				
 				});addObject(next);
 				
 			}
-			
 		});
 		viewObjects.add(startGame);
 	}
-
 }
 
 
