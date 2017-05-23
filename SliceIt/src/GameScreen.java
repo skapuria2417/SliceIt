@@ -13,7 +13,20 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	private TextLabel fruitDisplay;
 	private int random;
 	private boolean d;
+	
 	private ClickableGraphic pineapple;
+	private ClickableGraphic apple;
+	private ClickableGraphic banana;
+	private ClickableGraphic durian;
+	private ClickableGraphic guava;
+	private ClickableGraphic jackfruit;
+	private ClickableGraphic kiwi;
+	private ClickableGraphic mango;
+	private ClickableGraphic orange;
+	private ClickableGraphic tomato;
+	
+	private int score;
+	
 
 	public GameScreen(int width, int height) {
 		super(width, height);
