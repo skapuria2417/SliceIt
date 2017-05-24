@@ -74,6 +74,10 @@ public class Graphic implements Visible {
 		loadImages(imageLocation, 0,0);
 	}
 
+	public void changeGraphic(String imageLocation){
+		loadImages(imageLocation,getWidth(),getHeight());
+	}
+	
 	private void loadImages(String imageLocation, int w, int h) {
 		try{
 			//get the full-size image
@@ -126,6 +130,7 @@ public class Graphic implements Visible {
 
 	public void update() {
 		//does nothing, since image never changes
+		//unless changeGraphic is called.
 	}
 
 	public boolean isAnimated() {
