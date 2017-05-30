@@ -45,7 +45,7 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 		author.setSize(12);
 		viewObjects.add(author);
 
-		instructions = new TextArea(150,100,500,700,"Move the Arrow Keys to cut the triangle to get points! Avoid hitting the moving ball.");
+		instructions = new TextArea(150,80,500,750,"Click on the correct food to get points. Avoid the bombs!");
 
 		startGame=new Button(400,400,120,40,"Start Game", Color.green, new Action(){
 
@@ -56,7 +56,7 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 				viewObjects.remove(author);
 				remove(startGame);
 				viewObjects.add(instructions);
-				instructions.setSize(50);
+				instructions.setSize(75);
 
 				next = new Button(650,700,120,40,"Next",Color.green,new Action(){
 
