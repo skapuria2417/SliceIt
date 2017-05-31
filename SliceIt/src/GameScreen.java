@@ -18,11 +18,8 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	private String[] picArray;
 	private int random;
 	private int random2;
-	private boolean d;
 
-	private int imageCount;
-
-	private Button rectangle;
+	private double counter;
 
 	private ClickableGraphic fruitPics;
 
@@ -39,21 +36,27 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
+		Timer();
+		fruitAppear();
+		fruitDisplayAppear();
 		while (timeRemaining > 0) {
-			Timer();
 
-			fruitAppear();
-			fruitDisplayAppear();
+			
+			try {
+				Thread.sleep(30);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			update();
-
 		}
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		d = true;
 		String[] setUp = { "apple", "banana", "orange", "pineapple", "kiwi", "tomato", "guava,", "mango", "durian",
-				"jackfruit" };
+		"jackfruit" };
 
 		String[] picArray = { "Resources/pineapple.png", "Resources/banana.png", "Resources/orange.png",
 				"Resources/apple.png", "Resources/kiwi.png", "Resources/tomato.png", "Resources/guava.png",
@@ -73,55 +76,72 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 		time = new TextLabel(300, 150, 150, 150, "Time:" + timeRemaining);
 		viewObjects.add(time);
-
-		// rectangle=new Button(5,250,750,510,"",Color.white, new Action(){
-		//
-		// @Override
-		// public void act() {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		// });
-		// viewObjects.add(rectangle);
 	}
 
 	private void Timer() {
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		timeRemaining -= .1;
-		time.setText("Time: " + (int) (timeRemaining * 10) / 10.0);
+		Thread timer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while(timeRemaining > 0){
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					timeRemaining -= .1;
+					counter += .1;
+					time.setText("Time: " + (int) (timeRemaining * 10) / 10.0);
+					// TODO Auto-generated method stub
+				}
+			}
+		});
+		timer.start();
 
 	}
 
 	private void fruitAppear() {
-		// try {
-		// ;
+		Thread timer = new Thread(new Runnable() {
 
-		random2 = (int) (Math.random() * picArray.length);
-		fruitPics.setX((int) (Math.random() * getWidth()));
-		fruitPics.setY((int) (Math.random() * getWidth()));
-		String chosenPic = picArray[random2];
-		fruitPics.changeGraphic(chosenPic);
-		imageCount++;
+			@Override
+			public void run() {
+				while(timeRemaining > 0){
+					random2 = (int) (Math.random() * picArray.length);
+					fruitPics.setX((int) (Math.random() * getWidth()));
+					fruitPics.setY((int) (Math.random() * getWidth()));
+					String chosenPic = picArray[random2];
+					fruitPics.changeGraphic(chosenPic);
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timer.start();
 
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 	}
 
 	private void fruitDisplayAppear() {
-		// try {
-		// Thread.sleep(5000);
-		random = (int) (Math.random() * fruits.length);
-		String chosenFruit = fruits[random];
-		fruitDisplay.setText(chosenFruit);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+
+		Thread timer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while(timeRemaining > 0){
+					random = (int) (Math.random() * fruits.length);
+					String chosenFruit = fruits[random];
+					fruitDisplay.setText(chosenFruit);
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timer.start();
+
 	}
 }
