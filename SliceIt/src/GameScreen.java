@@ -18,6 +18,8 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	private String[] picArray;
 	private int random;
 	private int random2;
+	
+	private boolean imagePopped=false;
 
 	private double counter;
 
@@ -28,6 +30,9 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 	private double timeRemaining = 30.0;
 	private TextLabel time;
+	
+	private String chosenPic;
+	private String chosenFruit;
 
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -69,10 +74,25 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 		random2 = (int) (Math.random() * fruits.length);
 		fruitPics = new ClickableGraphic(250, 250, 70, 90, picArray[random2]);
+		fruitPics.setAction(new Action(){
+
+			@Override
+			public void act() {
+			
+				if(chosenPic.contains(chosenFruit) ){
+					score+=10;
+				}else{
+					System.out.println("wrong fruit");
+				}
+				
+			}
+			
+		});
 		viewObjects.add(fruitPics);
 
-		scoreD = new TextLabel(100, 100, 150, 50, "Score: ");
+		scoreD = new TextLabel(100, 100, 150, 50, "Score: "+score);
 		viewObjects.add(scoreD);
+		
 
 		time = new TextLabel(300, 150, 150, 150, "Time:" + timeRemaining);
 		viewObjects.add(time);
