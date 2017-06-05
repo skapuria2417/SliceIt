@@ -3,6 +3,8 @@ import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
@@ -20,10 +22,9 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 	private TextArea instructions;
 	private Button next;
 	private SliceItMain game;
+	private ClickableGraphic background;
 
-	private String [] fruits={"apple","banana","orange","pineapple","kiwi","tomamto","guava,","mango","durian","jackfruit"};
-	private TextLabel fruitDisplay;
-	private int random;
+	
 	public SliceItScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -37,6 +38,9 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		background =new ClickableGraphic(0, 0, 800, 800,"Resources/background.jpg");
+		viewObjects.add(background);
+//		
 		intro = new TextLabel(300,200,400,400,"Slice It");
 		intro.setSize(70);
 		viewObjects.add(intro);
@@ -46,12 +50,12 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 		viewObjects.add(author);
 
 		instructions = new TextArea(150,80,500,750,"Click on the correct food to get points. Avoid the bombs!");
-
+		
 		startGame=new Button(400,400,120,40,"Start Game", Color.green, new Action(){
 
 			@Override
 			public void act() {
-
+				viewObjects.remove(background);
 				viewObjects.remove(intro);
 				viewObjects.remove(author);
 				remove(startGame);

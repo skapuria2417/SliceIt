@@ -78,7 +78,7 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-			
+			            
 				if(chosenPic.contains(chosenFruit) ){
 					score+=10;
 				}else{
