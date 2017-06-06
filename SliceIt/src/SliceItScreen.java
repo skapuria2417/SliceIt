@@ -38,10 +38,10 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		background =new ClickableGraphic(0, 0, 800, 800,"Resources/background.jpg");
+		/*background =new ClickableGraphic(0, 0, 800, 800,"Resources/background.jpg");
 		viewObjects.add(background);
 //		
-		intro = new TextLabel(300,200,400,400,"Slice It");
+*/		intro = new TextLabel(300,200,400,400,"Slice It");
 		intro.setSize(70);
 		viewObjects.add(intro);
 
@@ -55,7 +55,7 @@ public class SliceItScreen extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				viewObjects.remove(background);
+				
 				viewObjects.remove(intro);
 				viewObjects.remove(author);
 				remove(startGame);

@@ -62,10 +62,11 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	public void initAllObjects(List<Visible> viewObjects) {
 		String[] setUp = { "apple", "banana", "orange", "pineapple", "kiwi", "tomato", "guava,", "mango", "durian",
 		"jackfruit" };
-
+		
 		String[] picArray = { "Resources/pineapple.png", "Resources/banana.png", "Resources/orange.png",
 				"Resources/apple.png", "Resources/kiwi.png", "Resources/tomato.png", "Resources/guava.png",
 				"Resources/mango.png", "Resources/durian.png", "Resources/jackfruit.png", "Resources/bomb.png" };
+		
 		this.picArray = picArray;
 		fruits = setUp;
 		random = (int) (Math.random() * fruits.length);
@@ -79,8 +80,9 @@ public class GameScreen extends ClickableScreen implements Runnable {
 			@Override
 			public void act() {
 			            
-				if(chosenPic.contains(chosenFruit) ){
+				if(getChosenPic().contains(chosenFruit) ){
 					score+=10;
+					scoreD.setText("Score: "+(score));
 				}else{
 					System.out.println("wrong fruit");
 				}
@@ -119,6 +121,10 @@ public class GameScreen extends ClickableScreen implements Runnable {
 		timer.start();
 
 	}
+	
+	private String getChosenPic(){
+		return chosenPic;
+	}
 
 	private void fruitAppear() {
 		Thread timer = new Thread(new Runnable() {
@@ -129,7 +135,7 @@ public class GameScreen extends ClickableScreen implements Runnable {
 					random2 = (int) (Math.random() * picArray.length);
 					fruitPics.setX((int) (Math.random() * getWidth()));
 					fruitPics.setY((int) (Math.random() * getWidth()));
-					String chosenPic = picArray[random2];
+					chosenPic = picArray[random2];
 					fruitPics.changeGraphic(chosenPic);
 					try {
 						Thread.sleep(1000);
@@ -151,7 +157,7 @@ public class GameScreen extends ClickableScreen implements Runnable {
 			public void run() {
 				while(timeRemaining > 0){
 					random = (int) (Math.random() * fruits.length);
-					String chosenFruit = fruits[random];
+					chosenFruit = fruits[random];
 					fruitDisplay.setText(chosenFruit);
 					try {
 						Thread.sleep(5000);
