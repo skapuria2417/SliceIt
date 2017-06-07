@@ -18,19 +18,24 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	private String[] picArray;
 	private int random;
 	private int random2;
-	
-	private boolean imagePopped=false;
+	private int random3;
+	private int random4;
+
+	private boolean imagePopped = false;
 
 	private double counter;
 
 	private ClickableGraphic fruitPics;
+	private ClickableGraphic fruitPics2;
+	private ClickableGraphic fruitPics3;
 
+	
 	private int score = 0;
 	private TextLabel scoreD;
 
-	private double timeRemaining = 30.0;
+	private double timeRemaining = 60.0;
 	private TextLabel time;
-	
+
 	private String chosenPic;
 	private String chosenFruit;
 
@@ -43,30 +48,31 @@ public class GameScreen extends ClickableScreen implements Runnable {
 	public void run() {
 		Timer();
 		fruitAppear();
+		fruitAppear2();
+		fruitAppear3();
 		fruitDisplayAppear();
 		while (timeRemaining > 0) {
 
-			
 			try {
 				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			update();
 		}
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		String[] setUp = { "apple", "banana", "orange", "pineapple", "kiwi", "tomato", "guava,", "mango", "durian",
-		"jackfruit" };
-		
+		String[] setUp = { "apple", "banana", "orange", "pineapple", "kiwi", "tomato", "guava", "mango", "durian",
+				"jackfruit" };
+
 		String[] picArray = { "Resources/pineapple.png", "Resources/banana.png", "Resources/orange.png",
 				"Resources/apple.png", "Resources/kiwi.png", "Resources/tomato.png", "Resources/guava.png",
 				"Resources/mango.png", "Resources/durian.png", "Resources/jackfruit.png", "Resources/bomb.png" };
-		
+
 		this.picArray = picArray;
 		fruits = setUp;
 		random = (int) (Math.random() * fruits.length);
@@ -75,26 +81,82 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 		random2 = (int) (Math.random() * fruits.length);
 		fruitPics = new ClickableGraphic(250, 250, 70, 90, picArray[random2]);
-		fruitPics.setAction(new Action(){
+		fruitPics.setAction(new Action() {
 
 			@Override
 			public void act() {
-			            
-				if(getChosenPic().contains(chosenFruit) ){
-					score+=10;
-					scoreD.setText("Score: "+(score));
-				}else{
-					System.out.println("wrong fruit");
-				}
-				
-			}
-			
-		});
-		viewObjects.add(fruitPics);
 
-		scoreD = new TextLabel(100, 100, 150, 50, "Score: "+score);
-		viewObjects.add(scoreD);
+					if (getChosenPic().contains(chosenFruit)) {
+						score += 10;
+						scoreD.setText("Score: " + (score));
+					}else if (getChosenPic().contains("bomb")) {
+						score -= 10;
+						scoreD.setText("Score: " + (score));
+						System.out.println("bomb ");
+					} else {
+						score -=5;
+						scoreD.setText("Score: " + (score));
+						System.out.println("wrong fruit ");
+					}
+				}
+			
+
+		});
+		viewObjects.add(fruitPics2);
 		
+//		random3 = (int) (Math.random() * fruits.length);
+		fruitPics2 = new ClickableGraphic(250, 250, 70, 90, picArray[random3]);
+		fruitPics2.setAction(new Action() {
+
+			@Override
+			public void act() {
+
+					if (getChosenPic().contains(chosenFruit)) {
+						score += 10;
+						scoreD.setText("Score: " + (score));
+					}else if (getChosenPic().contains("bomb")) {
+						score -= 10;
+						scoreD.setText("Score: " + (score));
+						System.out.println("bomb ");
+					} else {
+						score -=5;
+						scoreD.setText("Score: " + (score));
+						System.out.println("wrong fruit ");
+					}
+				}
+			
+
+		});
+		viewObjects.add(fruitPics2);
+		
+		random4 = (int) (Math.random() * fruits.length);
+		fruitPics3 = new ClickableGraphic(250, 250, 70, 90, picArray[random4]);
+		fruitPics3.setAction(new Action() {
+
+			@Override
+			public void act() {
+
+					if (getChosenPic().contains(chosenFruit)) {
+						score += 10;
+						scoreD.setText("Score: " + (score));
+					}else if (getChosenPic().contains("bomb")) {
+						score -= 10;
+						scoreD.setText("Score: " + (score));
+						System.out.println("bomb ");
+					} else {
+						score -=5;
+						scoreD.setText("Score: " + (score));
+						System.out.println("wrong fruit ");
+					}
+				}
+			
+
+		});
+		viewObjects.add(fruitPics3);
+
+
+		scoreD = new TextLabel(100, 100, 150, 50, "Score: " + score);
+		viewObjects.add(scoreD);
 
 		time = new TextLabel(300, 150, 150, 150, "Time:" + timeRemaining);
 		viewObjects.add(time);
@@ -105,7 +167,7 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 			@Override
 			public void run() {
-				while(timeRemaining > 0){
+				while (timeRemaining > 0) {
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
@@ -121,8 +183,8 @@ public class GameScreen extends ClickableScreen implements Runnable {
 		timer.start();
 
 	}
-	
-	private String getChosenPic(){
+
+	private String getChosenPic() {
 		return chosenPic;
 	}
 
@@ -131,14 +193,14 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 			@Override
 			public void run() {
-				while(timeRemaining > 0){
+				while (timeRemaining > 0) {
 					random2 = (int) (Math.random() * picArray.length);
 					fruitPics.setX((int) (Math.random() * getWidth()));
 					fruitPics.setY((int) (Math.random() * getWidth()));
 					chosenPic = picArray[random2];
 					fruitPics.changeGraphic(chosenPic);
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(900);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -146,8 +208,61 @@ public class GameScreen extends ClickableScreen implements Runnable {
 			}
 		});
 		timer.start();
+		//timer.start();
+		
 
 	}
+	
+	private void fruitAppear2() {
+		Thread timer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (timeRemaining > 0) {
+//					random3 = (int) (Math.random() * picArray.length);
+					fruitPics2.setX((int) (Math.random() * getWidth()));
+					fruitPics2.setY((int) (Math.random() * getWidth()));
+					chosenPic = picArray[random3];
+					fruitPics.changeGraphic(chosenPic);
+					try {
+						Thread.sleep(900);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timer.start();
+		//timer.start();
+		
+
+	}
+	
+	private void fruitAppear3() {
+		Thread timer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (timeRemaining > 0) {
+//					random4 = (int) (Math.random() * picArray.length);
+					fruitPics3.setX((int) (Math.random() * getWidth()));
+					fruitPics3.setY((int) (Math.random() * getWidth()));
+					chosenPic = picArray[random4];
+					fruitPics.changeGraphic(chosenPic);
+					try {
+						Thread.sleep(900);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timer.start();
+		//timer.start();
+		
+
+	}
+
 
 	private void fruitDisplayAppear() {
 
@@ -155,12 +270,12 @@ public class GameScreen extends ClickableScreen implements Runnable {
 
 			@Override
 			public void run() {
-				while(timeRemaining > 0){
+				while (timeRemaining > 0) {
 					random = (int) (Math.random() * fruits.length);
 					chosenFruit = fruits[random];
 					fruitDisplay.setText(chosenFruit);
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
